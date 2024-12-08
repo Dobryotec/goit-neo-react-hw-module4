@@ -10,5 +10,4 @@ export interface IImageGalleryProps {
   images: IImage[];
   handleCard: (id: string) => void;
   openModal: () => void;
-  cardRef: React.RefObject<HTMLLIElement>;
 }

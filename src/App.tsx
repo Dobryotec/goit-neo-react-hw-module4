@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllimages } from './api/images';
 
 import Container from './components/Container/Container';
@@ -23,8 +23,6 @@ function App() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
-  const cardRef = useRef<HTMLLIElement>(null);
 
   const openModal = () => {
     setIsOpen(true);
@@ -78,7 +76,6 @@ function App() {
       }
     };
     fetchImages();
- 
   }, [query, page]);
 
   return (
@@ -89,12 +86,7 @@ function App() {
       <main className={css.main}>
         <Container>
           {images.length > 0 && (
-            <ImageGallery
-              cardRef={cardRef}
-              images={images}
-              handleCard={handleCard}
-              openModal={openModal}
-            />
+            <ImageGallery images={images} handleCard={handleCard} openModal={openModal} />
           )}
           {images.length === 0 && query && !error && !isLoading && <NoResults />}
           {isLoading && !error && <Spinner />}
